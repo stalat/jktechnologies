@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ -d "env" ]
+if [ -d "myenv" ]
 then
   echo "Python virtual env exists"
 else
-  python3 -m venv env
+  python3 -m venv myenv
 fi
 
 echo $USER
