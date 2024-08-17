@@ -1,5 +1,6 @@
 #!/bin/bash
-
+echo "Present working Directory is: "
+echo $PWD
 . /venv/bin/activate
 echo "Listing all the files"
 ls -lah
