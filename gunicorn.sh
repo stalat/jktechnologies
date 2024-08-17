@@ -12,9 +12,10 @@ fi
 # . venv/bin/
 # cd /var/lib/jenkins/workspace/Django-jenkins/bookmanagement
 cd /app
-
-python3 bookmamagement/bookmamagement/manage.py makemigrations
-python3 bookmamagement/bookmamagement/manage.py migrate
+echo "Now listing the content"
+ls -lah 
+# python3 bookmamagement/bookmamagement/manage.py makemigrations
+# python3 bookmamagement/bookmamagement/manage.py migrate
 
 echo "Migrations are applied"
 
