@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Listing all the files"
+ls -lah
 cd /app 
 . /venv/bin/activate
 
