@@ -9,5 +9,6 @@ COPY . /app/
 
 RUN apt-get update 
 
-COPY ./requirements.txt .
+COPY ./requirements.txt /app/
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt

@@ -1,29 +1,41 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage("Setting up Python Virtual Environment"){
+    environment {
+        DOCKER_IMAGE = "django-docker-jenkins-app"
+        DOCKER_REGISTRY = "index.docker.io"  // Replace with your Docker registry
+        DOCKER_CREDENTIALS = credentials('docker-credentials')  // Jenkins credentials ID
+    }
+    stages {
+        stage('Build') {
             steps {
-                sh '''
-                chmod +x envsetup.sh
-                ./envsetup.sh
-                '''
+                script {
+                    sh 'docker-compose -f docker-compose.yml build'
+                }
             }
         }
-        stage('Setting up GUNICORN'){
+        stage('Push to Registry') {
             steps {
-                sh '''
-                chmod +x gunicorn.sh
-                ./gunicorn.sh
-                '''
+                script {
+                    docker.withRegistry("https://${DOCKER_REGISTRY}", DOCKER_CREDENTIALS) {
+                        sh "docker-compose -f docker-compose.yml push"
+                    }
+                }
             }
         }
-        stage('Setting up NGINX'){
+
+        stage('Deploy') {
             steps {
-                sh '''
-                chmod +x nginx.sh
-                ./nginx.sh
-                '''
+                script {
+                    sh 'docker-compose -f docker-compose.yml down'
+                    sh 'docker-compose -f docker-compose.yml up -d'
+                }
             }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
