@@ -9,10 +9,9 @@ COPY . /app/
 
 RUN pip install --no-cache-dir virtualenv
 RUN virtualenv venv
-RUN . venv/bin/activate
-
-RUN apt-get update 
 
 COPY ./requirements.txt /app/
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN venv/bin/pip install --upgrade pip
+RUN venv/bin/pip install -r requirements.txt
+
+RUN apt-get update 
