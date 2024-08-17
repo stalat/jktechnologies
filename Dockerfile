@@ -8,10 +8,9 @@ WORKDIR /app
 COPY . /app/
 
 RUN pip install --no-cache-dir virtualenv
-RUN virtualenv venv
+RUN virtualenv /app/venv
 
 COPY ./requirements.txt /app/
-RUN venv/bin/pip install --upgrade pip
-RUN venv/bin/pip install -r requirements.txt
+RUN . /app/venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt
 
 RUN apt-get update 
