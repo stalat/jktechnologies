@@ -2,6 +2,8 @@
 
 cd /app 
 . /venv/bin/activate
+echo "Now listing folders"
+ls -lah
 
 python3 bookmanagement/manage.py makemigrations
 python3 bookmanagement/manage.py migrate
