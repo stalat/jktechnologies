@@ -1,17 +1,8 @@
 #!/bin/bash
 
-if [ -d "venv" ]
-then
-  echo "Python virtual env exists"
-else
-  python3 -m venv venv
-fi
-
-. /app/venv/bin/activate
-
-# . venv/bin/
-# cd /var/lib/jenkins/workspace/Django-jenkins/bookmanagement
 cd /app
+. venv/bin/activate
+
 echo "Now listing the content"
 ls -lah 
 python3 bookmanagement/manage.py makemigrations
