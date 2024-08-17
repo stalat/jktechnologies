@@ -9,4 +9,4 @@ cd /app
 python3 manage.py makemigrations
 python3 manage.py migrate
 
-exec gunicorn --bind 0.0.0.0:8000 bookmanagement.wsgi.application
+exec gunicorn --bind 0.0.0.0:8000 bookmanagement.wsgi:application
