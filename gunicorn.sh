@@ -1,7 +1,14 @@
 #!/bin/bash
 
 cd /app
-. venv/bin/activate
+if [ -d "venv" ]
+then
+  echo "Python virtual env exists"
+else
+  python3 -m venv venv
+fi
+
+. /app/venv/bin/activate
 
 echo "Now listing the content"
 ls -lah 
