@@ -4,8 +4,24 @@ pipeline {
         DOCKER_IMAGE = "django-docker-jenkins-app"
         DOCKER_REGISTRY = "index.docker.io"  // Replace with your Docker registry
         DOCKER_CREDENTIALS = credentials('docker-credentials')  // Jenkins credentials ID
+        DB_NAME = 'jktechnologies_db'
+        DB_USER = credentials('db-user-credential-id')
+        DB_PASSWORD = credentials('db-password-credential-id')
+    }
     }
     stages {
+        stage('Create .env File') {
+            steps {
+                script {
+                    // Write environment variables to .env file
+                    sh '''
+                        echo "DB_NAME=${DB_NAME}" > .env
+                        echo "DB_USER=${DB_USER}" >> .env
+                        echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
+                    '''
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
