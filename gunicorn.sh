@@ -1,17 +1,11 @@
 #!/bin/bash
 
-cd /app
-if [ -d "venv" ]
-then
-  echo "Python virtual env exists"
-else
-  python3 -m venv venv
-fi
-
-. /app/venv/bin/activate
-
 echo "Now listing the content"
 ls -lah 
+
+cd /app
+. /app/venv/bin/activate
+
 python3 bookmanagement/manage.py makemigrations
 python3 bookmanagement/manage.py migrate
 
