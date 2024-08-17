@@ -14,21 +14,21 @@ fi
 cd /app
 echo "Now listing the content"
 ls -lah 
-# python3 bookmamagement/bookmamagement/manage.py makemigrations
-# python3 bookmamagement/bookmamagement/manage.py migrate
+python3 bookmanagement/manage.py makemigrations
+python3 bookmanagement/manage.py migrate
 
 echo "Migrations are applied"
 
 # cd /var/lib/jenkins/workspace/Django-jenkins/
-sudo cp -rf gunicorn.socket /etc/systemd/system/
-sudo cp -rf gunicorn.service /etc/systemd/system/
+cp -rf gunicorn.socket /etc/systemd/system/
+cp -rf gunicorn.service /etc/systemd/system/
 
 echo "$USER"
 echo "$PWD"
 
-sudo systemctl daemon-reload
-sudo systemctl start gunicorn
-sudo systemctl enable gunicorn
+systemctl daemon-reload
+systemctl start gunicorn
+systemctl enable gunicorn
 
 echo "GUNICORN has been started"
 
