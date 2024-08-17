@@ -7,6 +7,10 @@ WORKDIR /app
 
 COPY . /app/
 
+RUN pip install --no-cache-dir virtualenv
+RUN virtualenv venv
+RUN . venv/bin/activate
+
 RUN apt-get update 
 
 COPY ./requirements.txt /app/
