@@ -10,7 +10,6 @@ pipeline {
         DB_HOST = 'postgres_db'
         DB_PORT = 5432
     }
-    }
     stages {
         stage('Create .env File') {
             steps {
