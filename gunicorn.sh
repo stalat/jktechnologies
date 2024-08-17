@@ -1,9 +1,9 @@
 #!/bin/bash
 
+echo $PWD
+cd /app
 echo "Now listing the content"
 ls -lah 
-
-cd /app
 . /app/venv/bin/activate
 
 python3 bookmanagement/manage.py makemigrations
