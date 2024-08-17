@@ -3,12 +3,11 @@ pipeline {
     environment {
         DOCKER_IMAGE = "django-docker-jenkins-app"
         DOCKER_REGISTRY = "index.docker.io"  // Replace with your Docker registry
-        DOCKER_CREDENTIALS = credentials('docker-credentials')  // Jenkins credentials ID
         DB_NAME = 'jktechnologies_db'
         DB_USER = credentials('db-user-credential-id')
         DB_PASSWORD = credentials('db-password-credential-id')
         DB_HOST = 'postgres_db'
-        DB_PORT = 5432
+        DB_PORT = '5432'
     }
     stages {
         stage('Create .env File') {
@@ -29,13 +28,14 @@ pipeline {
             steps {
                 script {
                     sh 'docker-compose -f docker-compose.yml build'
+                    sh 'docker-compose -f docker-compose.yml up -d'
                 }
             }
         }
         stage('Push to Registry') {
             steps {
                 script {
-                    docker.withRegistry("https://${DOCKER_REGISTRY}", DOCKER_CREDENTIALS) {
+                    docker.withRegistry("https://${DOCKER_REGISTRY}", 'docker-credentials') {
                         sh "docker-compose -f docker-compose.yml push"
                     }
                 }
