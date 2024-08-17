@@ -10,18 +10,20 @@ python3 bookmanagement/manage.py migrate
 
 echo "Migrations are applied"
 
-# cd /var/lib/jenkins/workspace/Django-jenkins/
-cp -rf gunicorn.socket /etc/systemd/system/
-cp -rf gunicorn.service /etc/systemd/system/
+exec gunicorn --bind 0.0.0.0:8000 bookmanagement.bookmanagement.wsgi
 
-echo "$USER"
-echo "$PWD"
+# # cd /var/lib/jenkins/workspace/Django-jenkins/
+# cp -rf gunicorn.socket /etc/systemd/system/
+# cp -rf gunicorn.service /etc/systemd/system/
 
-systemctl daemon-reload
-systemctl start gunicorn
-systemctl enable gunicorn
+# echo "$USER"
+# echo "$PWD"
 
-echo "GUNICORN has been started"
+# systemctl daemon-reload
+# systemctl start gunicorn
+# systemctl enable gunicorn
 
-sudo systemctl status gunicorn
-sudo systemctl restart gunicorn
+# echo "GUNICORN has been started"
+
+# sudo systemctl status gunicorn
+# sudo systemctl restart gunicorn
