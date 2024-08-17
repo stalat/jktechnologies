@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ -d "venv" ]
+then
+  echo "Python virtual env exists"
+else
+  python3 -m venv venv
+fi
+
 . venv/bin/activate
 cd /var/lib/jenkins/workspace/Django-jenkins/bookmanagement
 
