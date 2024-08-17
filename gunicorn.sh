@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. /app/venv/bin/activate
+. venv/bin/activate
 cd /var/lib/jenkins/workspace/Django-jenkins/bookmanagement
 
 python3 manage.py makemigrations

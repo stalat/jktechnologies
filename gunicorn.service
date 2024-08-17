@@ -6,8 +6,8 @@ After=network.target
 User=root
 Group=www-data
 WorkingDirectory=/var/lib/jenkins/workspace/Django-jenkins/bookmanagement
-Environment="PATH=/var/lib/jenkins/workspace/Django-jenkins/myenv/bin"
-ExecStart=/var/lib/jenkins/workspace/Django-jenkins/myenv/bin/gunicorn \
+Environment="PATH=/var/lib/jenkins/workspace/Django-jenkins/venv/bin"
+ExecStart=/var/lib/jenkins/workspace/Django-jenkins/venv/bin/gunicorn \
         --error-logfile /var/lib/jenkins/workspace/Django-jenkins/error.log \
         --workers 3 \
         --bind unix:/run/gunicorn.sock \
