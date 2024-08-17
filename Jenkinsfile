@@ -7,6 +7,8 @@ pipeline {
         DB_NAME = 'jktechnologies_db'
         DB_USER = credentials('db-user-credential-id')
         DB_PASSWORD = credentials('db-password-credential-id')
+        DB_HOST = 'postgres_db'
+        DB_PORT = 5432
     }
     }
     stages {
@@ -17,11 +19,14 @@ pipeline {
                     sh '''
                         echo "DB_NAME=${DB_NAME}" > .env
                         echo "DB_USER=${DB_USER}" >> .env
-                        echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
+                        echo "DB_PASSWORD=${ˀDB_PASSWORD}" >> .env
+                        echo "DB_HOST=${DB_HOST}" >> .env
+                        echo "DB_PORT=${DB_PORT}" >> .env
                     '''
                 }
             }
         }
+    }
         stage('Build') {
             steps {
                 script {
@@ -47,7 +52,6 @@ pipeline {
                 }
             }
         }
-    }
 
     post {
         always {
