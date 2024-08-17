@@ -7,15 +7,18 @@ else
   python3 -m venv venv
 fi
 
-. venv/bin/activate
-cd /var/lib/jenkins/workspace/Django-jenkins/bookmanagement
+. /app/venv/bin/activate
+
+# . venv/bin/
+# cd /var/lib/jenkins/workspace/Django-jenkins/bookmanagement
+cd /app
 
 python3 manage.py makemigrations
 python3 manage.py migrate
 
 echo "Migrations are applied"
 
-cd /var/lib/jenkins/workspace/Django-jenkins/
+# cd /var/lib/jenkins/workspace/Django-jenkins/
 sudo cp -rf gunicorn.socket /etc/systemd/system/
 sudo cp -rf gunicorn.service /etc/systemd/system/
 
