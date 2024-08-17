@@ -13,8 +13,8 @@ fi
 # cd /var/lib/jenkins/workspace/Django-jenkins/bookmanagement
 cd /app
 
-python3 bookmamagement/manage.py makemigrations
-python3 bookmamagement/manage.py migrate
+python3 bookmamagement/bookmamagement/manage.py makemigrations
+python3 bookmamagement/bookmamagement/manage.py migrate
 
 echo "Migrations are applied"
 
