@@ -3,6 +3,8 @@ services:
   web:
     build:
       context: .
+    dns:
+      - 8.8.8.8  # Google's DNS
     ports:
       - "8000:8000"
     command: ["sh", "./gunicorn.sh"]
