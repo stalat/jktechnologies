@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from bookmanagement import model_constants as constants
 
 class CreateUpdate(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
@@ -27,3 +29,8 @@ class Books(CreateUpdate):
     def __str__(self):
         return self.title
 
+class Reviews(CreateUpdate):
+    book = models.ForeignKey(Books, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    review_text = models.TextField(null=True, blank=True)
+    rating = models.CharField(max_length=1, choices=constants.RATING_CHOICES)
