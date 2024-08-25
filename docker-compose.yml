@@ -1,3 +1,8 @@
+# setting up 3 containers namely:
+# 1. web - for Django codebase
+# 2. postgres_db - for Database operations
+# 3. nginx - web server for reverse proxy
+
 version: "3.8"
 services:
   web:
@@ -7,8 +12,6 @@ services:
       - 8.8.8.8  # Google's DNS
     ports:
       - "8000:8000"
-    environment:
-      - DJANGO_SETTINGS_MODULE=jktechnologies.settings
     command: ["sh", "./gunicorn.sh"]
     volumes:
       - .:/app
@@ -38,4 +41,3 @@ services:
 
 volumes:
   postgres_data:
-

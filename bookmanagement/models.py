@@ -16,6 +16,9 @@ class Author(CreateUpdate):
 
     def __str__(self):
         return self.author_name
+    
+    class Meta:
+        verbose_name_plural = "Author"
 
 
 class Books(CreateUpdate):
@@ -27,9 +30,16 @@ class Books(CreateUpdate):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name_plural = "Books"
+    
 
 class Reviews(CreateUpdate):
     book = models.ForeignKey(Books, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     review_text = models.TextField(null=True, blank=True)
     rating = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = "Reviews"

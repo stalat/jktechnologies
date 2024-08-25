@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = "django-docker-jenkins-app"
-        DOCKER_REGISTRY = "index.docker.io"  // Replace with your Docker registry
+        DOCKER_REGISTRY = "index.docker.io"
         DB_NAME = 'jktechnologies_db'
         DB_USER = credentials('db-user-credential-id')
         DB_PASSWORD = credentials('db-password-credential-id')
@@ -13,7 +13,7 @@ pipeline {
         stage('Create .env File') {
             steps {
                 script {
-                    // Write environment variables to .env file
+                    // writing environment variables to dynamically generated .env file
                     sh '''
                         echo "DB_NAME=${DB_NAME}" > .env
                         echo "DB_USER=${DB_USER}" >> .env
@@ -51,7 +51,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             cleanWs()

@@ -1,6 +1,8 @@
 from django.contrib import admin
 from bookmanagement.models import Books, Author, Reviews
 
+
+# Registering Books, Authors & Reviews models on Django's admin panel
 @admin.register(Books)
 class BooksAdmin(admin.ModelAdmin):
     list_display = ('title', 'year_published', 'genre')
